@@ -1,0 +1,469 @@
+/* =========================================
+   HERO HEADING ANIMATION
+========================================= */
+
+.hero-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: heroFadeUp 0.8s ease-out forwards;
+}
+
+.hero-line-1 {
+  animation-delay: 0.15s;
+}
+
+.hero-line-2 {
+  animation-delay: 0.45s;
+}
+
+/* =========================================
+   COLORED LETTERS
+========================================= */
+
+.hero-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: letterReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-blue {
+  color: #4285f4;
+  animation-delay: 0.55s;
+}
+
+.hero-red {
+  color: #ea4335;
+  animation-delay: 0.65s;
+}
+
+.hero-yellow {
+  color: #fbbc05;
+  animation-delay: 0.75s;
+}
+
+.hero-green {
+  color: #34a853;
+  animation-delay: 0.85s;
+}
+
+/* =========================================
+   BY DESIGN
+========================================= */
+
+.hero-line-2 .ml-2 {
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(15px);
+  animation: designReveal 0.7s ease-out 1.05s forwards;
+}
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes designReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-letter,
+  .hero-line-2 .ml-2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+
+
+
+/* =========================================================
+   HOW IT WORKS - ANIMATIONS
+========================================================= */
+
+/* Header */
+
+.how-header {
+  opacity: 0;
+  transform: translateY(35px);
+  animation: howFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+/* =========================================================
+   SECURITY LETTER ANIMATION
+========================================================= */
+
+.secure-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px) scale(0.9);
+
+  animation-name: secureLetterReveal;
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: forwards;
+}
+
+
+/* S */
+
+.secure-letter:nth-of-type(1) {
+  animation-delay: 0.45s;
+}
+
+/* e */
+
+.secure-letter:nth-of-type(2) {
+  animation-delay: 0.52s;
+}
+
+/* c */
+
+.secure-letter:nth-of-type(3) {
+  animation-delay: 0.59s;
+}
+
+/* u */
+
+.secure-letter:nth-of-type(4) {
+  animation-delay: 0.66s;
+}
+
+/* r */
+
+.secure-letter:nth-of-type(5) {
+  animation-delay: 0.73s;
+}
+
+/* e */
+
+.secure-letter:nth-of-type(6) {
+  animation-delay: 0.80s;
+}
+
+/* i */
+
+.secure-letter:nth-of-type(7) {
+  animation-delay: 0.87s;
+}
+
+/* t */
+
+.secure-letter:nth-of-type(8) {
+  animation-delay: 0.94s;
+}
+
+/* y */
+
+.secure-letter:nth-of-type(9) {
+  animation-delay: 1.01s;
+}
+
+/* dot */
+
+.secure-letter:nth-of-type(10) {
+  animation-delay: 1.08s;
+}
+
+
+/* =========================================================
+   ARCHITECTURE BAR
+========================================================= */
+
+.architecture-item {
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: architectureReveal 0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+.architecture-item:nth-of-type(1) {
+  animation-delay: 1.15s;
+}
+
+.architecture-item:nth-of-type(3) {
+  animation-delay: 1.30s;
+}
+
+.architecture-item:nth-of-type(5) {
+  animation-delay: 1.45s;
+}
+
+
+/* Arrows */
+
+.architecture-arrow {
+  opacity: 0;
+
+  animation: arrowReveal 0.5s ease-out forwards;
+}
+
+.architecture-arrow:nth-of-type(2) {
+  animation-delay: 1.25s;
+}
+
+.architecture-arrow:nth-of-type(4) {
+  animation-delay: 1.40s;
+}
+
+
+/* =========================================================
+   PROCESS CARDS
+========================================================= */
+
+.process-card {
+  opacity: 0;
+  transform: translateY(45px);
+
+  animation: cardReveal 0.75s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+
+/* First card */
+
+.process-card-1 {
+  animation-delay: 1.55s;
+}
+
+
+/* Second card */
+
+.process-card-2 {
+  animation-delay: 1.72s;
+}
+
+
+/* Third card */
+
+.process-card-3 {
+  animation-delay: 1.89s;
+}
+
+
+/* =========================================================
+   IMAGE ANIMATION
+========================================================= */
+
+.process-image {
+  transform: scale(1);
+}
+
+.process-card:hover .process-image {
+  transform: scale(1.06);
+}
+
+
+/* =========================================================
+   SECURITY PANEL
+========================================================= */
+
+.security-panel {
+  opacity: 0;
+  transform: translateY(30px);
+
+  animation: securityReveal 0.75s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+  animation-delay: 2.05s;
+}
+
+
+/* =========================================================
+   BOTTOM STATUS
+========================================================= */
+
+.bottom-status {
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: bottomReveal 0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+  animation-delay: 2.25s;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+@keyframes howFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes secureLetterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes architectureReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes arrowReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes securityReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes bottomReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.process-card > div {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.process-card:hover > div {
+  transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .how-header,
+  .secure-letter,
+  .architecture-item,
+  .architecture-arrow,
+  .process-card,
+  .security-panel,
+  .bottom-status {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .process-card:hover > div {
+    transform: none;
+  }
+
+  .process-image {
+    transition: none;
+  }
+}

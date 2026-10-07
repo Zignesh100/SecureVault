@@ -1,11 +1,13 @@
 {
-  "name": "backend",
+  "name": "securevault-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "type": "module",
+  "main": "server.js",
+ "scripts": {
+  "dev": "nodemon src/services/server.js",
+  "start": "node src/services/server.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

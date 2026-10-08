@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+import dns from "dns";
 import connectDB from "../config/db.js";
-
+import authRoutes from "../routes/auth.routes.js";
 dotenv.config();
 
-const app = express(); 
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+
+const app = express();
 
 app.use(express.json());
 
@@ -14,6 +17,10 @@ app.get("/", (req, res) => {
     message: "SecureVault API is running",
   });
 });
+
+
+app.use("/api/auth", authRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 

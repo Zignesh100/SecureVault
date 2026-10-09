@@ -1,5 +1,8 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
+import jwt from "jsonwebtoken";
+
+
 
 export const registerUser = async (req, res) => {
   try {
@@ -44,6 +47,73 @@ export const registerUser = async (req, res) => {
     });
   } catch (error) {
     console.error("Register error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
+
+
+
+export  const loginUser = async(req ,res )=>{
+  try{
+    const {email,password}=req.body;
+    if(!email || !password){
+      return res.status(400).json({
+        success:false,
+        message:"Email and password are required",
+
+      });
+    }
+    const normalizedEmail=email.trim().toLowerCase();
+
+    const user = await User.findOne({
+      email:normalizedEmail,
+    });
+      const isPasswordValid  = await bcrypt.compare(
+        password,
+        user.password
+      );
+
+      if(!isPasswordValid){
+        return res.status(401).json({
+          success: false,
+            message: "Invalid email or password",
+        });
+      }
+        if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET is not configured");
+    }
+    
+    if(user.twoFactorEnabled){
+      return res.status(501).json({
+        success:false,
+        message:"2FA login flow is not implemented yet",
+      })
+    }
+    const token = jwt.sign(
+      {id:user._id.toString()},
+      process.env.JWT_SECRET,
+      {expiresIn:"1h"}
+    );
+
+    return res.status(200).json({
+     success: true,
+      message: "Login successful",
+      token,
+       user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    })
+
+
+  }catch (error) {
+    console.error("Login error:", error.message);
 
     return res.status(500).json({
       success: false,

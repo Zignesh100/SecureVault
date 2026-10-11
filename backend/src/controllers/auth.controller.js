@@ -73,6 +73,14 @@ export  const loginUser = async(req ,res )=>{
     const user = await User.findOne({
       email:normalizedEmail,
     });
+
+    
+if (!user) {
+  return res.status(401).json({
+    success: false,
+    message: "Invalid email or password",
+  });
+}
       const isPasswordValid  = await bcrypt.compare(
         password,
         user.password
@@ -120,4 +128,18 @@ export  const loginUser = async(req ,res )=>{
       message: "Internal server error",
     });
   }
+};
+
+
+
+
+export const getCurrentUser = async (req, res) => {
+  return res.status(200).json({
+    success: true,
+    user: {
+      id: req.user._id,
+      name: req.user.name,
+      email: req.user.email,
+    },
+  });
 };

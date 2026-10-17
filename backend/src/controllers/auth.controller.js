@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-
-
+import QRCode from "qrcode";
+import speakeasy from "speakeasy";
 
 export const registerUser = async (req, res) => {
   try {
@@ -142,4 +142,64 @@ export const getCurrentUser = async (req, res) => {
       email: req.user.email,
     },
   });
+};
+
+
+
+export const setup2FA = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select(
+      "+twoFactorSecret"
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    if (user.twoFactorEnabled) {
+      return res.status(400).json({
+        success: false,
+        message: "2FA is already enabled",
+      });
+    }
+
+    // Reuse an existing pending secret, if one exists.
+    if (!user.twoFactorSecret) {
+      const secret = speakeasy.generateSecret({
+        name: `SecureVault (${user.email})`,
+        length: 20,
+      });
+
+      user.twoFactorSecret = secret.base32;
+      await user.save();
+    }
+
+    const otpauthUrl = speakeasy.otpauthURL({
+      secret: user.twoFactorSecret,
+      encoding: "base32",
+      label: user.email,
+      issuer: "SecureVault",
+      algorithm: "sha1",
+      digits: 6,
+      period: 30,
+    });
+
+    const qrCodeDataUrl = await QRCode.toDataURL(otpauthUrl);
+
+    return res.status(200).json({
+      success: true,
+      message: "Scan the QR code with your authenticator app",
+      qrCode: qrCodeDataUrl,
+    });
+  } catch (error) {
+    console.error("2FA setup error:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Unable to set up 2FA",
+    });
+  }
 };

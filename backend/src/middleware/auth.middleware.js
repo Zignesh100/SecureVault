@@ -1,5 +1,9 @@
 import jwt from "jsonwebtoken";
 import  User from "../models/user.model.js";
+import speakeasy from "speakeasy";
+
+
+
 
 export const verifyJWT = async (req, res, next) => {
   try {
@@ -50,3 +54,6 @@ export const verifyJWT = async (req, res, next) => {
     });
   }
 };
+
+
+
